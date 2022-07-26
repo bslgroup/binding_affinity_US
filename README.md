@@ -36,7 +36,7 @@ fe.sh - estimates free energies from the biasing potentials using npwham. Genera
 
 err.sh - uses npwham to generate error estimates via bootstrapping
 
-pmf.sh - builds the 1D-PMF in terms of the distance between the binding pocket and heparin
+pmf.sh - builds the 1D-PMF in terms of the ligand-protein distance
 
 distvector.sh - builds the 3D-PMF in terms of the distance vector
 
