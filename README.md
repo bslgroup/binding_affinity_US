@@ -21,6 +21,10 @@ exchange.sh - calculates the exchange rate between neighboring image pairs based
 
 step3_pbcsetup.pdb, step3_pbcsetup.xplor.ext.psf - PDB and PSF files for the hFGF1-heparin system generated using CHARMM-GUI
 
+wt.pdb, wt.psf - PDB and PSF files for the unbound hFGF1 system generated using CHARMM-GUI
+
+freehep.pdb, freehep.psf - PDB and PSF files for the free ligand generated using CHARMM-GUI
+
 
 #Free Energy Calculations
 
