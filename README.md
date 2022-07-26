@@ -3,7 +3,22 @@ in the Manuscript: Binding Affinity Estimation From Restrained Umbrella Sampling
 
 Authors:  Vivek Govind Kumar, Shilpi Agrawal, Thallapuranam Krishnaswamy Suresh Kumar, and Mahmoud Moradi
 
-#Simulation Setup
+#1-SMD Simulations
+
+Sample configuration files are provided for the SMD simulation setup discussed in the manuscript.
+
+namd.conf - NAMD configuration file used for the SMD simulations
+
+colvarconfig_"filename".conf - defines the collective variables/reaction coordinates and restraints used for the SMD simulations; provided for each SMD simulation setup discussed in the manuscript.
+
+step3_pbcsetup.pdb, step3_pbcsetup.xplor.ext.psf - PDB and PSF files for the hFGF1-heparin system generated using CHARMM-GUI
+
+wt.pdb, wt.psf - PDB and PSF files for the unbound hFGF1 system generated using CHARMM-GUI
+
+freehep.pdb, freehep.psf - PDB and PSF files for the free ligand generated using CHARMM-GUI
+
+
+#2-BEUS Simulations
 
 Sample configuration files are provided for the BEUS simulation setup discussed in the manuscript.
 
@@ -26,7 +41,7 @@ wt.pdb, wt.psf - PDB and PSF files for the unbound hFGF1 system generated using 
 freehep.pdb, freehep.psf - PDB and PSF files for the free ligand generated using CHARMM-GUI
 
 
-#Free Energy Calculations
+#3-Free Energy Calculations
 
 Scripts/codes used to calculate PMF/free energy are provided.
 
