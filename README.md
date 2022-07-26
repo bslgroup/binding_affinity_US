@@ -13,7 +13,7 @@ beus.namd - BEUS code
 
 namd.conf - NAMD configuration file used for the BEUS simulations
 
-colvar.conf - defines the collective variables/reaction coordinates and restraints used for the BEUS simulations; examples are provided for each BEUS simulation setup discussed in the manuscript.
+colvar_"filename".conf - defines the collective variables/reaction coordinates and restraints used for the BEUS simulations; provided for each BEUS simulation setup discussed in the manuscript.
 
 centers.tcl - defines specific BEUS images/windows by assigning forceConstant and centers to override information in the colvars configuration file.; a sample file from the distance-based BEUS simulation with orientation restraints is provided here.
 
