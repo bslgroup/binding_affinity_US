@@ -65,7 +65,7 @@ distvector.sh - builds the 3D-PMF in terms of the distance vector
 
 #NPWHAM EXAMPLE
 
-Sample input and output files (for the Distance-based BEUS simulation with no restraints) are provided for scripts that use the npwham code. 
+Sample input and output files (from the Distance-based BEUS simulation with no restraints) are provided for scripts that use the npwham code. 
 
 npwham.cp - code for the Non-Parametric Weighted Histogram Analysis (npwham) Method
 
