@@ -46,13 +46,11 @@ freehep.pdb, freehep.psf - PDB and PSF files for the free ligand generated using
 
 #3-Free Energy Calculations
 
-Scripts/codes used to calculate PMF/free energy are provided.
+Scripts/codes used to calculate PMF/free energy are provided. See NPWHAM below for the source code and the example. 
 
 do.sh - combines the colvar trajectory files with BEUS history files and assigns the actual sampled collective variable values associated with each sample to its appropriate image id.
 
 pot.sh - calculates biasing potentials based on the image centers and actual sampled collective variables.
-
-npwham.cp - code for the Non-Parametric Weighted Histogram Analysis (npwham) Method
 
 fe.sh - estimates free energies from the biasing potentials using npwham. Generates text files containing the converged free energy estimates and the probability of each sampled conformation.
 
@@ -65,9 +63,13 @@ distvector.sh - builds the 3D-PMF in terms of the distance vector
 
 #NPWHAM EXAMPLE
 
-Sample input and output files (from the Distance-based BEUS simulation with no restraints) are provided for scripts that use the npwham code. 
+Source file, installation file (Makefile), preinstalled binaries, and sample input and output files (from the Distance-based BEUS simulation with no restraints) are provided for scripts that use the npwham code. 
 
-npwham.cp - code for the Non-Parametric Weighted Histogram Analysis (npwham) Method
+npwham.cc - code for the Non-Parametric Weighted Histogram Analysis (npwham) Method
+
+Makefile - installation of npwham.cc
+
+npwham - preinstalled binaries of npwham.cc
 
 #1-Free energy 
 
