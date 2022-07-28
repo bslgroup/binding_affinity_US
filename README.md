@@ -85,7 +85,7 @@ err.sh - uses npwham to generate error estimates in addition to the free energie
 
 potall.txt - input file containing biasing potentials based on the image centers and actual sampled collective variables.
 
-bootstrapall.txt - output file for err.sh; contains probability of each sampled conformation
+bootstrapall.txt - output file for err.sh (split into 2 parts due to github file size limitations); contains probability of each sampled conformation
 
 bootstrapall.err - output file for err.sh; contains average free energy estimates with standard deviations.
 
