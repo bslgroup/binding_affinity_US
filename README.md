@@ -46,7 +46,7 @@ freehep.pdb, freehep.psf - PDB and PSF files for the free ligand generated using
 
 #3-Free Energy Calculations
 
-Scripts/codes used to calculate PMF/free energy are provided. See NPWHAM below for the source code and the example. 
+Scripts/codes used to calculate PMF/free energy are provided. See NPWHAM EAMPLE below for the source code and the example. 
 
 do.sh - combines the colvar trajectory files with BEUS history files and assigns the actual sampled collective variable values associated with each sample to its appropriate image id.
 
