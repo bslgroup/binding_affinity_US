@@ -1,7 +1,7 @@
 Configuration files and scripts used for setup/analysis of Bias Exchange Umbrella Sampling (BEUS) Simulations discussed 
 in the Manuscript: Binding Affinity Estimation From Restrained Umbrella Sampling Simulations. 
 
-Authors:  Vivek Govind Kumar, Shilpi Agrawal, Thallapuranam Krishnaswamy Suresh Kumar, and Mahmoud Moradi
+Authors:  Vivek Govind Kumar, Adithya Polasa, Shilpi Agrawal, Thallapuranam Krishnaswamy Suresh Kumar, and Mahmoud Moradi
 
 
 #CODES
