@@ -1,0 +1,74 @@
+colvarsTrajFrequency      5000             
+colvarsRestartFrequency   5000            
+smp off # SMP and multiple-replica are incompatible
+indexFile                 ../complex.ndx      
+colvar {                                    
+    name RMSD                                
+    width 0.05                               
+    lowerboundary 0.00            
+    upperboundary 3.00            
+    subtractAppliedForce on                  
+    expandboundaries  on                     
+    extendedLagrangian on                    
+    extendedFluctuation 0.05                 
+    rmsd {                                  
+        atoms {                             
+            indexGroup  ligand               
+        }                                   
+        refpositionsfile  ../complex.xyz          
+    }                                       
+}                                           
+abf {                            
+    colvars        RMSD           
+    FullSamples    10000          
+    historyfreq    50000          
+    shared         on
+    sharedFreq     2000
+    writeCZARwindowFile           
+
+}                                
+metadynamics {                   
+    colvars           RMSD        
+    hillWidth         3.0         
+    hillWeight        0.05        
+    wellTempered      on          
+    biasTemperature   4000        
+}                                
+harmonicWalls {                           
+    colvars           RMSD                 
+    lowerWalls        0.0      
+    upperWalls        3.0      
+    lowerWallConstant 0.2                  
+    upperWallConstant 0.2                  
+}                                         
+colvar {                         
+  name translation                
+  distance {                     
+    group1 {                     
+      indexGroup  protein         
+    }                            
+    group2 {                     
+      dummyAtom (-1.3068323135375977, -0.030426498502492905, 0.4462643563747406)    
+    }                            
+  }                              
+}                                
+harmonic {                       
+  colvars       translation       
+  centers       0.0               
+  forceConstant 100.0             
+}                                
+                                  
+colvar {                         
+  name orientation                
+  orientation {                  
+    atoms {                      
+      indexGroup  protein         
+    }                            
+    refPositionsFile   ../complex.xyz  
+  }                              
+}                                
+harmonic {                       
+  colvars       orientation       
+  centers       (1.0, 0.0, 0.0, 0.0)    
+  forceConstant 2000.0            
+}                                

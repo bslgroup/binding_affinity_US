@@ -1,0 +1,225 @@
+colvarsTrajFrequency      5000             
+colvarsRestartFrequency   5000            
+smp off # SMP and multiple-replica are incompatible
+indexFile                 ../complex.ndx      
+colvar {                                    
+    name RMSD                                
+    rmsd {                                  
+        atoms {                             
+            indexGroup  ligand               
+        }                                   
+        refpositionsfile  ./complex_largeBox.xyz          
+    }                                       
+}                                           
+colvar {                              
+    name eulerTheta                   
+    customFunction asin(2 * (q1*q3-q4*q2)) * 180 / 3.1415926
+    Orientation {                             
+        name  q                                
+        atoms {                               
+            indexGroup  ligand                 
+            centerReference    on              
+            rotateReference    on              
+	        enableFitGradients no              
+            fittingGroup {                    
+                indexGroup  protein            
+            }                                 
+            refpositionsfile  ./complex_largeBox.xyz        
+         }                                    
+         refpositionsfile  ./complex_largeBox.xyz           
+    }                                         
+}                                             
+colvar {                              
+    name eulerPhi                   
+    customFunction atan2(2*(q1*q2+q3*q4), 1-2*(q2*q2+q3*q3)) * 180 / 3.1415926
+    Orientation {                             
+        name  q                                
+        atoms {                               
+            indexGroup  ligand                 
+            centerReference    on              
+            rotateReference    on              
+	        enableFitGradients no              
+            fittingGroup {                    
+                indexGroup  protein            
+            }                                 
+            refpositionsfile  ./complex_largeBox.xyz        
+         }                                    
+         refpositionsfile  ./complex_largeBox.xyz           
+    }                                         
+}                                             
+colvar {                              
+    name eulerPsi                   
+    customFunction atan2(2*(q1*q4+q2*q3), 1-2*(q3*q3+q4*q4)) * 180 / 3.1415926
+    Orientation {                             
+        name  q                                
+        atoms {                               
+            indexGroup  ligand                 
+            centerReference    on              
+            rotateReference    on              
+	        enableFitGradients no              
+            fittingGroup {                    
+                indexGroup  protein            
+            }                                 
+            refpositionsfile  ./complex_largeBox.xyz        
+         }                                    
+         refpositionsfile  ./complex_largeBox.xyz           
+    }                                         
+}                                             
+colvar {                                   
+    name polarTheta                            
+    customFunction acos(-i2) * 180 / 3.1415926
+    distanceDir {                          
+        name  i                             
+        group1 {                           
+            indexGroup  reference           
+            centerReference    on           
+            rotateReference    on           
+            enableFitGradients no           
+            fittingGroup {                 
+                indexGroup  protein         
+            }                              
+            refpositionsfile  ./complex_largeBox.xyz     
+        }                                  
+        group2 {                           
+            indexGroup  ligand              
+            centerReference    on           
+            rotateReference    on           
+            enableFitGradients no           
+            fittingGroup {                 
+                indexGroup  protein         
+            }                              
+            refpositionsfile  ./complex_largeBox.xyz     
+        }                                  
+    }                                      
+}                                          
+colvar {                                   
+    name polarPhi                            
+    customFunction atan2(i3, i1) * 180 / 3.1415926
+    period  360                             
+    wrapAround 0.0                          
+    distanceDir {                          
+        name  i                             
+        group1 {                           
+            indexGroup  reference           
+            centerReference    on           
+            rotateReference    on           
+            enableFitGradients no           
+            fittingGroup {                 
+                indexGroup  protein         
+            }                              
+            refpositionsfile  ./complex_largeBox.xyz     
+        }                                  
+        group2 {                           
+            indexGroup  ligand              
+            centerReference    on           
+            rotateReference    on           
+            enableFitGradients no           
+            fittingGroup {                 
+                indexGroup  protein         
+            }                              
+            refpositionsfile  ./complex_largeBox.xyz     
+        }                                  
+    }                                      
+}                                          
+colvar {                            
+    name    r                        
+    width 0.10                        
+    lowerboundary 17.00    
+    upperboundary 41.00    
+    subtractAppliedForce on          
+    expandboundaries  on             
+    extendedLagrangian on            
+    extendedFluctuation 0.10          
+    distance {                            
+        forceNoPBC       yes               
+        group1 {                          
+            indexGroup  reference          
+	    }                                 
+        group2 {                          
+            indexGroup  ligand             
+        }                                 
+    }                                     
+}                                         
+abf {                            
+    colvars        r           
+    FullSamples    10000          
+    historyfreq    50000          
+    shared
+    sharedFreq 2000
+    writeCZARwindowFile           
+}                                
+metadynamics {                   
+    colvars           r        
+    hillWidth         3.0         
+    hillWeight        0.05        
+    wellTempered      on          
+    biasTemperature   4000        
+}                                
+harmonicWalls {                           
+    colvars           r                 
+    lowerWalls        17.0      
+    upperWalls        41.0      
+    lowerWallConstant 0.2                  
+    upperWallConstant 0.2                  
+}                                         
+harmonic {                          
+    colvars         RMSD             
+    forceConstant   10.0   
+    centers         0.0     
+}
+harmonic {                          
+    colvars         eulerTheta             
+    forceConstant   0.1   
+    centers         0.0     
+}
+harmonic {                          
+    colvars         eulerPhi             
+    forceConstant   0.1   
+    centers         0.0     
+}
+harmonic {                          
+    colvars         eulerPsi             
+    forceConstant   0.1   
+    centers         0.0     
+}
+harmonic {                          
+    colvars         polarTheta             
+    forceConstant   0.1   
+    centers         96.0     
+}
+harmonic {                          
+    colvars         polarPhi             
+    forceConstant   0.1   
+    centers         -16.0     
+}
+colvar {                         
+  name translation                
+  distance {                     
+    group1 {                     
+      indexGroup  protein         
+    }                            
+    group2 {                     
+      dummyAtom (-1.3068323135375977, -0.030426498502492905, 0.4462643563747406)    
+    }                            
+  }                              
+}                                
+harmonic {                       
+  colvars       translation       
+  centers       0.0               
+  forceConstant 100.0             
+}                                
+                                  
+colvar {                         
+  name orientation                
+  orientation {                  
+    atoms {                      
+      indexGroup  protein         
+    }                            
+    refPositionsFile   ./complex_largeBox.xyz  
+  }                              
+}                                
+harmonic {                       
+  colvars       orientation       
+  centers       (1.0, 0.0, 0.0, 0.0)    
+  forceConstant 2000.0            
+}                                

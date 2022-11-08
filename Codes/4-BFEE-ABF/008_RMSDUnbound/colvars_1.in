@@ -1,0 +1,42 @@
+colvarsTrajFrequency      5000             
+colvarsRestartFrequency   5000            
+smp off # SMP and multiple-replica are incompatibl
+indexFile                 ./ligandOnly.ndx      
+colvar {                                    
+    name RMSD                                
+    width 0.05                               
+    lowerboundary 0.00            
+    upperboundary 3.00            
+    subtractAppliedForce on                  
+    expandboundaries  on                     
+    extendedLagrangian on                    
+    extendedFluctuation 0.05                 
+    rmsd {                                  
+        atoms {                             
+            indexGroup  ligand               
+        }                                   
+        refpositionsfile  ./ligandOnly.xyz          
+    }                                       
+}                                           
+abf {                            
+    colvars        RMSD           
+    FullSamples    10000          
+    historyfreq    50000          
+    shared
+    sharedFreq 2000
+    writeCZARwindowFile           
+}                                
+metadynamics {                   
+    colvars           RMSD        
+    hillWidth         3.0         
+    hillWeight        0.05        
+    wellTempered      on          
+    biasTemperature   4000        
+}                                
+harmonicWalls {                           
+    colvars           RMSD                 
+    lowerWalls        0.0      
+    upperWalls        3.0      
+    lowerWallConstant 0.2                  
+    upperWallConstant 0.2                  
+}                                         
