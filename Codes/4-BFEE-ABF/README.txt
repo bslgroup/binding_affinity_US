@@ -31,5 +31,5 @@ To calculate the binding free energy:
 4.2.  run 008_RMSDUnbound/008.1_eq.conf
 4.3.  run 008_RMSDUnbound/008.2_abf_1.conf
 (steps 2-4 can be done in parallel)
-5.    do post-treatment using BFEEadadad
+5.    do post-treatment using BFEE
 
