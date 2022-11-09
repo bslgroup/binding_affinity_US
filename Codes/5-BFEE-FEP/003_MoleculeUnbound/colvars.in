@@ -1,0 +1,17 @@
+colvarsTrajFrequency      5000             
+colvarsRestartFrequency   5000            
+indexFile                 ../ligandOnly.ndx      
+colvar {                                    
+    name RMSD                                
+    rmsd {                                  
+        atoms {                             
+            indexGroup  ligand               
+        }                                   
+        refpositionsfile  ../ligandOnly.xyz          
+    }                                       
+}                                           
+harmonic {                          
+    colvars         RMSD             
+    forceConstant   10.0   
+    centers         0.0     
+}

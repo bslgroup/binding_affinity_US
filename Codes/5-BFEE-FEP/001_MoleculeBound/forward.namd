@@ -1,0 +1,66 @@
+##############################################################################################
+# namd configuration for non-interacting multiple-copy simulations For FEP Forward simulation 
+##############################################################################################
+
+set replica_id [myReplica]
+
+set system_conf [format $system_root $replica_id]
+
+
+#source $system_conf.namd
+#source forward.$replica_id.namd
+
+set output_name [format $output_root $replica_id]
+
+if { $job_id > 0 } { #restart
+    set old_job_id [expr $job_id-1]
+    set input_name $output_name.job$old_job_id.$replica_id.restart
+} else {
+    set input_name [format $input_root $replica_id]
+}
+
+outputname $output_name.job$job_id.$replica_id
+
+if {[info exists input_root]||[info exists old_job_id]} { #do you have *.coor files?
+    bincoordinates $input_name.coor
+}
+if {([info exists input_root]&&$usevel)||[info exists old_job_id]} { #do you have *.vel files?
+    binvelocities $input_name.vel
+} else {
+    if {[info exists temperature]} {
+        temperature $temperature
+    } else {
+        error "temperature is not set!"
+    }
+}
+if {([info exists input_root]&&$usexsc)||[info exists old_job_id]} { #do you have *.xsc files?
+    extendedSystem $input_name.xsc
+    set myxscfile $input_name.xsc
+    if {!$zerotime} { #do you want to keep the time informations
+        set firsttimestepfile $input_name.xsc
+    }
+} else {
+    cellBasisVector1    [lindex $cellinfo 0]
+    cellBasisVector2    [lindex $cellinfo 1]
+    cellBasisVector3    [lindex $cellinfo 2]
+    cellOrigin          [lindex $cellinfo 3]
+}
+
+proc get_firsttime { xscfile } {
+    set fd [open $xscfile r]
+    gets $fd
+    gets $fd
+    gets $fd line
+    set ts [lindex $line 0]
+    close $fd
+    return $ts
+}
+
+if {[info exists firsttimestepfile]} {
+    set firsttime [get_firsttime $myxscfile]
+} else {
+    set firsttime 0
+}
+
+#runFEP  $start $end $dLambda $numSteps
+source $system_conf.namd
